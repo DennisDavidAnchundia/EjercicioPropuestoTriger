@@ -1,7 +1,4 @@
----SI NO SE TIENE INSTALADO ORACLE, SE PUEDE REALIZAR ONLINE EN SU PAGINA OFICIAL----
--- LINK: https://livesql.oracle.com/   ----
 
----POR SI EXISTEN LAS TABLAS Y EL TRIGGER----
  drop trigger actualizar_num_matricula;
  drop table estudiante;
  drop table matricula;
