@@ -27,14 +27,14 @@ alter table matricula add constraint fk_estudiante foreign key(idestudiante) ref
  ---SEGUNDO PASO CREAR TRIGGER---------
  ----Trigger----------
  create or replace trigger actualizar_num_matricula
- after insert or delete on matricula
+ before insert or delete on matricula
  for each row
  declare
  begin
   if INSERTING THEN 
   update estudiante
-  set repeticiones = repeticiones +1
-  where idestudiante = :new.idestudiante; ---USAMOS NEW PORQUE EN EL INSERT RECIEN SE CREARA UN DATO----
+  set repeticiones  = repeticiones + 1 
+  where idestudiante = :new.idestudiante ; ---USAMOS NEW PORQUE EN EL INSERT RECIEN SE CREARA UN DATO----
   ELSIF DELETING THEN 
   update estudiante
   set repeticiones =repeticiones -1
@@ -47,8 +47,8 @@ alter table matricula add constraint fk_estudiante foreign key(idestudiante) ref
 
  --- TERCER PASO ----
 ----Datos insertados-----
-insert into ESTUDIANTE values(1,'robert','1-may-22', 0);
-insert into ESTUDIANTE values(2,'dennis','26-may-22', 0);
+insert into ESTUDIANTE values(1,'robert','1-may-22', -1);
+insert into ESTUDIANTE values(2,'dennis','26-may-22', -1);
  --- FIN DEL TERCER PASO ----
 
 --CUARTO PASO: VERIFICAMOS QUE EL ESTUDIANTE ESTA ACTUALIZANDO EL CAMPO REPETICION MATRICULA-----
