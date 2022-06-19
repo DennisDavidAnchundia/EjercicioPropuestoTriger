@@ -1,4 +1,5 @@
-drop trigger actualizar_num_matricula;
+
+ drop trigger actualizar_num_matricula;
  drop table estudiante;
  drop table matricula;
  
@@ -48,7 +49,7 @@ alter table matricula add constraint fk_estudiante foreign key(idestudiante) ref
  --- TERCER PASO ----
 ----Datos insertados-----
 insert into ESTUDIANTE values(1,'robert','1-may-22', -1);
-insert into ESTUDIANTE values(2,'dennis','26-may-22', -1);
+insert into ESTUDIANTE values(2,'dennis','26-may-22',  -1);
  --- FIN DEL TERCER PASO ----
 
 --CUARTO PASO: VERIFICAMOS QUE EL ESTUDIANTE ESTA ACTUALIZANDO EL CAMPO REPETICION MATRICULA-----
@@ -58,30 +59,32 @@ select * from estudiante
 
 ---INICIO DE QUINTO  PASO---
 insert into MATRICULA values(1,'15-may-22',1,1);
-insert into MATRICULA values(2,'20-may-22',1,1);
-insert into MATRICULA values(3,'30-may-22',1,1);
-insert into MATRICULA values(4,'30-may-22',1,2);
+insert into MATRICULA values(2,'10-may-22',1,2);
+insert into MATRICULA values(3,'21-may-22',1,1);
+insert into MATRICULA values(4,'11-may-22',1,2);
+insert into MATRICULA values(5,'13-may-22',1,1);
+insert into MATRICULA values(6,'16-may-22',1,2);
+
 ---FIN  DE QUINTO  PASO---
 
 
---SEXTO PASO: VERIFICACION DEL TRIGGER-----
-select * from estudiante
---FIN SEXTO PASO-----
-
-
-
-----SEPTIMO PASO: VERIFICAMOS DEL TRIGGER AL ELIMINAR-----
---PARA QUITAR UNA REPETICION------
+---- SECION DE SENTENCIA DELETE ESTUDIANTE ROBERT------
+delete from matricula where idmatricula=5
 delete from matricula where idmatricula=3
-----FIN DEL SEPTIMO PASO-----
+---- SECION DE SENTENCIA DELETE ESTUDIANTE ROBERT------  
+
+---- SECION DE SENTENCIA DELETE ESTUDIANTE DENNIS------
+delete from matricula where idmatricula=4
+delete from matricula where idmatricula=6
+---- SECION DE SENTENCIA DELETE ESTUDIANTE DENNIS------
 
 
 
----OPCIONAL-----
-----INNER JOIN ENTRE LAS DOS TABLAS---------
-select *
-from ESTUDIANTE 
-inner join MATRICULA on ESTUDIANTE.idestudiante = MATRICULA.idestudiante
-  
----SI LO PUEDES IMAGINAR , LO PUEEDS PROGRAMAR :D PD.PROGRAMACION ATS ----
+
+
+
+
+
+
+
  
